@@ -1,34 +1,44 @@
 ---
 name: logo-web-kit
-description: "Preparar una versión básica para planificar variantes y formatos web de un logo existente. Usar cuando el usuario pida planificar variantes y formatos web de un logo existente a partir de información suministrada."
+description: "Convierte un logo suministrado por el usuario en un sistema de archivos listo para web: SVG, PNG, WebP, favicon, versiones positiva y negativa, isotipo y logotipo. Úsala al adaptar, normalizar, separar o exportar activos de marca; no la uses para inventar una marca nueva salvo que el usuario lo pida expresamente."
 ---
 
 # Logo Web Kit
 
-Versión básica de ejemplo de Punilla Digital.
+Crear un paquete web fiel al logo original. Aceptar imágenes raster, SVG, PDF y archivos editables que las herramientas disponibles puedan leer. No rediseñar, corregir tipografía ni cambiar proporciones, colores o espaciado sin autorización.
 
-## Datos de entrada
-Solicitar logo suministrado, usos, fondos y tamaños. Preguntar solo por datos imprescindibles; señalar supuestos y pendientes para el resto.
+## Flujo
 
-## Identidad configurable
-- Usar la marca, logo, paleta, tipografías, tema y tono que proporcione el usuario. Sus instrucciones prevalecen sobre este ejemplo.
-- Ejemplo editable: marca Punilla Digital; violeta #7C3AED, naranja #F97316, cian #06B6D4, negro #0B0B10 y blanco #FFFFFF. Son valores de demostración, no una certificación de colores oficiales.
-- Tema claro: fondo blanco y texto oscuro. Tema oscuro: fondo negro, texto blanco, acentos moderados y grilla sutil cuando el formato lo permita.
-- Tipografía: sans serif legible; usar la fuente de marca si se proporciona. Tono: profesional, directo y español rioplatense.
-- Logo: usar exclusivamente el archivo suministrado, conservar proporciones y dejar espacio alrededor. Si falta, marcar «logo pendiente»; no inventarlo.
-- Aplicar estilo a la presentación y a las indicaciones visuales; no modificar cifras, consultas, contenido educativo ni datos para ajustarlos al diseño.
+1. Inspeccionar el archivo y registrar formato, dimensiones, transparencia, colores visibles, legibilidad y si contiene símbolo, nombre o ambos.
+2. Determinar los componentes disponibles:
+   - **Marca completa:** símbolo y nombre combinados.
+   - **Isotipo:** símbolo sin el nombre.
+   - **Logotipo:** nombre tipográfico sin el símbolo.
+   - **Favicon:** normalmente derivado del isotipo, nunca de un nombre largo salvo que no exista otra opción.
+3. Si los componentes están en capas o vectores, separarlos sin reconstruirlos. Si solo existe una imagen plana, recortar cuando la separación sea inequívoca. Si elementos se superponen o faltan, pedir una decisión antes de inventarlos.
+4. Limpiar el fondo y producir una fuente maestra con transparencia. Para una imagen raster, usar edición de imagen cuando haga falta aislar el logo; preservar bordes, texto y geometría exactamente. No usar generación creativa para “mejorar” la marca.
+5. Conservar un SVG vectorial real cuando la entrada lo permita. Para entradas raster:
+   - vectorizar solo formas simples y validar visualmente el resultado;
+   - si no es fiable, crear un SVG contenedor con la imagen incrustada y declararlo como **SVG raster incrustado**, no como vector;
+   - nunca afirmar que una imagen quedó vectorizada solo por guardarla con extensión `.svg`.
+6. Crear la versión negativa en blanco manteniendo la transparencia y, si aporta valor, una variante monocroma oscura. No invertir automáticamente fotografías, degradados o marcas multicolor protegidas; conservarlas o pedir criterio.
+7. Exportar el paquete conforme a [references/deliverables.md](references/deliverables.md). Para maestros PNG transparentes ya preparados, se puede ejecutar `scripts/package_logo.py` para generar las variantes raster y los iconos de forma consistente.
+8. Revisar visualmente fondos claro y oscuro, tamaños pequeños y bordes transparentes antes de entregar.
 
-## Procedimiento
-1. Identificar el resultado esperado y revisar el material proporcionado.
-2. Identificar isotipo y logotipo solo si el original permite separarlos; definir variantes positiva y negativa; proponer SVG, PNG, WebP y favicon. No afirmar que se vectorizó o exportó sin crear y verificar archivos.
-3. Aplicar la identidad configurable cuando corresponda.
-4. Revisar coherencia, ortografía, unidades y datos antes de entregar.
+## Decisiones que requieren confirmación
+
+Detenerse y preguntar solo si la respuesta cambia materialmente la identidad: cuál elemento debe ser el isotipo, si se permite reconstruir una parte oculta, si puede eliminarse un eslogan, o si una variante negativa debe conservar colores corporativos. Para cuestiones de exportación ordinarias, usar los valores por defecto de esta skill.
+
+## Reglas de fidelidad
+
+- El texto de marca debe coincidir carácter por carácter.
+- Mantener relación de aspecto; nunca estirar.
+- Evitar halos, bordes dentados, fondos residuales y recortes apretados.
+- No ampliar una fuente raster pequeña como si ganara detalle. Indicar la limitación.
+- Mantener perfiles de color web estándar, preferentemente sRGB.
+- No sobrescribir el archivo fuente.
+- Si el usuario aporta normas de marca, estas prevalecen sobre los valores por defecto.
 
 ## Entrega
-Tabla de variante, formato, tamaño, fondo y uso.
 
-## Límites
-No inventar clientes, precios, resultados, credenciales ni fuentes. Entregar texto, tablas e indicaciones en esta versión; no prometer imágenes, PDF, PPTX, videos o integraciones ya ejecutadas. Si el usuario pide un archivo o acción externa, comprobar las herramientas disponibles y comunicar el alcance real. No publicar, enviar ni ejecutar acciones externas por el solo hecho de usar esta skill.
-
-## Ejemplo
-Definí las versiones web necesarias para este logo.
+Entregar una carpeta comprimible con nombres estables, un `manifest.json` legible por máquinas y un `README.md` orientado a personas. El README debe explicar qué se exportó, para qué sirve cada variante, cómo integrar los favicons, cuándo usar la versión negativa y cualquier limitación de la fuente. Si el usuario pide documentación específica para agentes, se puede añadir además `AGENTS.md`, pero no reemplazar el README humano salvo que lo solicite expresamente.

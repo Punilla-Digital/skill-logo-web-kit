@@ -1,0 +1,15 @@
+interface:
+  display_name: Logo Web Kit
+  short_description: Convierte logos en un kit listo para web
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+  brand_color: '#0F766E'
+  default_prompt: Usa $logo-web-kit para adaptar este logo a formatos web y crear
+    todas sus variantes.
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
